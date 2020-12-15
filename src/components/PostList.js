@@ -3,14 +3,18 @@ import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
 
 export class PostList extends Component {
-
-    componentDidUpdate(){
-        this.props.fetchPosts();
-    }
+  componentDidUpdate() {
+    this.props.fetchPosts();
+  }
 
   render() {
+    console.log(this.props.posts);
     return <div>post list</div>;
   }
 }
 
-export default connect(null, { fetchPosts })(PostList);
+const mapStateToProps = (state) => {
+  return { posts: state.posts };
+};
+
+export default connect(mapStateToProps, { fetchPosts })(PostList);
